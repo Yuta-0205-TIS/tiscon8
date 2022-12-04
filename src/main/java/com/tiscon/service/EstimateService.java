@@ -45,6 +45,7 @@ public class EstimateService {
     public void registerOrder(UserOrderDto dto) {
         Customer customer = new Customer();
         BeanUtils.copyProperties(dto, customer);
+        customer.setMoveday(dto.getDate());
         estimateDAO.insertCustomer(customer);
 
         if (dto.getWashingMachineInstallation()) {
@@ -92,7 +93,23 @@ public class EstimateService {
             priceForOptionalService = estimateDAO.getPricePerOptionalService(OptionalServiceType.WASHING_MACHINE.getCode());
         }
 
-        return priceForDistance + pricePerTruck + priceForOptionalService;
+        // 季節係数の計算
+        String date = dto.getDate();
+        String month = date.substring(5,7);
+
+        double n;
+        if(month.equals("03") || month.equals("04")){
+            n = 1.5;
+        }else if(month.equals("09")){
+            n = 1.2;
+        }else {
+            n = 1;
+        }
+        
+        // 料金の計算
+        int price = (int) Math.floor((priceForDistance + pricePerTruck) * n + priceForOptionalService);
+        
+        return price;
     }
 
     /**

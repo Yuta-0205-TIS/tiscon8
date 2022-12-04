@@ -31,7 +31,7 @@
           <input type="text" id="customerName" name="customerName" th:field="*{customerName}" class="form-control" value="山田太郎"/>
         </div>
         <div class="form-group">
-          <label for="tel">連絡先TEL</label>
+          <label for="tel">連絡先TEL＊半角数字ハイフン(-)なしで入力してください</label>
           <input type="tel" id="tel" name="tel" th:field="*{tel}" class="form-control" value="03-1234-5678"/>
         </div>
         <div class="form-group">
@@ -46,7 +46,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="oldAddress">集荷元住所（市区町村以下）</label>
+          <label for="oldAddress">集荷元住所（市区町村以下）(例: 新宿区西新宿8-17-1)</label>
           <input type="text" id="oldAddress" name="oldAddress" th:field="*{oldAddress}"
                  class="form-control" value="新宿区西新宿1-1-1"/>
         </div>
@@ -57,38 +57,46 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="newAddress">お届け先住所（市区町村以下）</label>
+          <label for="newAddress">お届け先住所（市区町村以下）(例: 大阪市北区堂島浜1-2-1 新ダイビル )</label>
           <input type="text" id="newAddress" name="newAddress" th:field="*{newAddress}" class="form-control"
                  value="札幌市南区1"/>
         </div>
       </fieldset>
       <fieldset>
       <div class="sub-title">お荷物情報</div>
+      <div class="sub-title">＊トラック輸送費：段ボール数80個以内で3万円、81個以上で5万円となります</div>
         <div class="form-group">
           <label for="box">段ボールの個数</label>
           <input type="text" id="box" name="box" th:field="*{box}" class="form-control" value="10"/>
         </div>
         <div class="form-group">
-          <label for="bed">ベッドの個数</label>
+          <label for="bed">ベッドの個数(ベット1個 = 段ボール20個相当)</label>
           <input type="text" id="bed" name="bed" th:field="*{bed}" class="form-control" value="3"/>
         </div>
         <div class="form-group">
-          <label for="bicycle">自転車の個数</label>
+          <label for="bicycle">自転車の個数(自転車1個 = 段ボール15個相当)</label>
           <input type="text" id="bicycle" name="bicycle" th:field="*{bicycle}" class="form-control" value="1"/>
         </div>
         <div class="form-group">
-          <label for="washingMachine">洗濯機の個数</label>
+          <label for="washingMachine">洗濯機の個数(洗濯機1個 = 段ボール10個相当)</label>
           <input type="text" id="washingMachine" name="washingMachine" th:field="*{washingMachine}" class="form-control"
                  value="1"/>
         </div>
         <div class="form-group">
-          <label for="washingMachineInstallation">洗濯機の設置工事申し込み</label>
+          <label for="washingMachineInstallation">洗濯機の設置工事申し込み(料金3000円)</label>
           <select id="washingMachineInstallation" name="washingMachineInstallation" class="form-control" th:field="*{washingMachineInstallation}">
             <option th:value="false" th:text="なし">なし</option>
             <option th:value="true" th:text="あり">あり</option>
           </select>
         </div>
       </fieldset>
+
+      <div class="sub-title">お引っ越し情報</div>
+      <div class="form-group">
+        <label for="date">お引っ越し日</label>
+        <input type="date" id="date" name="date"  th:field="*{date}" class="form-control" />
+      </div>
+
       <div class="form-group">
         <div class="text-center">
           <button type="submit" name="backToTop" class="btn-back">TOPへ戻る</button>
